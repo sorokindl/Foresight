@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Форсайт — Dual-Track Model</title>
+<meta name="description" content="Гибридная модель роста «Форсайт»: прямые продажи Enterprise-клиентам и партнёрская сеть агентов на массовом рынке энергоэффективности.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<noscript><style>.reveal{opacity:1 !important; transform:none !important;}</style></noscript>
+<style>
+  :root{
+    --bg: #0B0F14;
+    --panel: #12181F;
+    --panel-2: #171F27;
+    --border: #262F39;
+    --border-soft: #1D2530;
+    --text: #E9EEF2;
+    --text-dim: #8FA0AC;
+    --text-faint: #5C6B77;
+    --cyan: #34D6BE;
+    --amber: #F2A93B;
+    --blue: #5C8DEF;
+    --radius: 10px;
+    --maxw: 1100px;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:76px;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0) 0 0/28px 28px,
+      var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  ::selection{background:rgba(52,214,190,0.28); color:#fff;}
+  :focus-visible{outline:2px solid var(--cyan); outline-offset:3px; border-radius:4px;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,15,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+  }
+  .logo{
+    font-family:var(--font-display); font-weight:700; font-size:16px;
+    letter-spacing:0.5px; display:flex; align-items:center; gap:9px;
+  }
+  .logo .dot{width:8px; height:8px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px var(--cyan);}
+  nav.links{display:flex; gap:22px; overflow-x:auto; scrollbar-width:none;}
+  nav.links::-webkit-scrollbar{display:none;}
+  nav.links a{
+    font-family:var(--font-mono); font-size:12.5px; text-transform:uppercase;
+    letter-spacing:0.6px; color:var(--text-dim); text-decoration:none; white-space:nowrap;
+    padding:4px 0; margin-right:22px; border-bottom:1px solid transparent; transition:color .15s, border-color .15s;
+  }
+  nav.links a:last-child{margin-right:0;}
+  nav.links a:hover{color:var(--cyan); border-color:var(--cyan);}
+
+  /* ---------- EYEBROW / LABELS ---------- */
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12px; text-transform:uppercase;
+    letter-spacing:1.5px; color:var(--cyan); display:flex; align-items:center; gap:8px; margin-bottom:14px;
+  }
+  .eyebrow .bar{width:20px; height:1px; background:var(--cyan);}
+
+  h1,h2,h3{font-family:var(--font-display); font-weight:700; margin:0; letter-spacing:-0.01em;}
+  .section-title{font-size:clamp(24px,3.2vw,32px); margin-bottom:14px;}
+  .lede{color:var(--text-dim); font-size:16.5px; max-width:68ch; margin:0 0 36px;}
+
+  section{padding:88px 0; border-bottom:1px solid var(--border-soft);}
+  section:last-of-type{border-bottom:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:96px 0 80px; border-bottom:1px solid var(--border-soft); position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:start;}
+  .hero h1{font-size:clamp(32px,4.6vw,50px); line-height:1.12; margin-bottom:20px;}
+  .hero h1 span{color:var(--cyan);}
+  .hero p.sub{color:var(--text-dim); font-size:17px; max-width:56ch; margin-bottom:28px;}
+  .hero-stats{display:flex; gap:28px; flex-wrap:wrap;}
+  .hstat{font-family:var(--font-mono); margin-right:28px;}
+  .hstat:last-child{margin-right:0;}
+  .hstat .num{font-size:22px; color:var(--text); font-weight:600;}
+  .hstat .label{font-size:11.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.8px;}
+
+  /* readout / signature panel */
+  .readout{
+    background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:22px 22px 26px;
+  }
+    .readout-head {display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+        gap: 6px 16px;
+    }
+  .readout-head .rlabel{font-family.readout-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:18px; flex-wrap:wrap; gap:6px 16px;}var(--font-mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--text-faint);}
+  .readout-total{font-family:var(--font-mono); font-size:30px; font-weight:600; color:var(--text);}
+  .readout-total small{font-size:13px; color:var(--text-faint); font-weight:400;}
+
+  .flow-bar{display:flex; width:100%; height:14px; border-radius:7px; overflow:hidden; background:var(--panel-2); margin-bottom:16px;}
+  .flow-bar .seg{height:100%; transition:width 1s cubic-bezier(.16,1,.3,1);}
+  .seg-owner{background:var(--blue);}
+  .seg-agent{background:var(--cyan);}
+  .seg-forsyth{background:var(--amber);}
+
+  .flow-legend{display:grid; grid-template-columns:repeat(3,1fr); column-gap:12px;}
+  .fl-item{border-left:2px solid var(--border); padding-left:10px;}
+  .fl-item .sw{display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:6px;}
+  .fl-item .fname{font-size:12.5px; color:var(--text-dim);}
+  .fl-item .fnum{font-family:var(--font-mono); font-size:17px; font-weight:600; color:var(--text);}
+  .fl-item .fpct{font-family:var(--font-mono); font-size:11px; color:var(--text-faint);}
+
+  /* ---------- STAT / BARRIER CARDS ---------- */
+  .stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .stat-card{
+    background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:20px;
+  }
+  .stat-card .fig{font-family:var(--font-mono); font-size:24px; color:var(--amber); font-weight:600; margin-bottom:8px;}
+  .stat-card .desc{font-size:14px; color:var(--text-dim);}
+
+  /* ---------- PRODUCT CARDS ---------- */
+  .card-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .pcard{
+    background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column; gap:12px;
+  }
+  .pcard .icon{width:36px; height:36px; color:var(--cyan);}
+  .pcard h3{font-size:17px;}
+  .pcard p{font-size:14px; color:var(--text-dim); margin:0;}
+
+  /* ---------- TABLE ---------- */
+  .table-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius); background:var(--panel);}
+  table{width:100%; border-collapse:collapse; font-size:14.5px; min-width:560px;}
+  thead th{
+    text-align:left; font-family:var(--font-mono); font-size:11.5px; text-transform:uppercase;
+    letter-spacing:0.6px; color:var(--cyan); padding:14px 18px; border-bottom:1px solid var(--border);
+    background:var(--panel-2);
+  }
+  tbody th{
+    text-align:left; font-family:var(--font-mono); font-size:12.5px; color:var(--text-dim);
+    padding:16px 18px; border-bottom:1px solid var(--border-soft); vertical-align:top; width:170px;
+  }
+  tbody td{padding:16px 18px; border-bottom:1px solid var(--border-soft); vertical-align:top; color:var(--text);}
+  tbody tr:last-child th, tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:rgba(52,214,190,0.04);}
+
+  .note{font-size:14px; color:var(--text-dim); margin-top:18px; padding-left:16px; border-left:2px solid var(--border);}
+
+  /* ---------- TWO COLUMN SPLIT ---------- */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
+  .split > div{padding:26px 28px; background:var(--panel);}
+  .split > div:first-child{border-right:1px solid var(--border);}
+  .split .tag{font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--text-faint); margin-bottom:10px;}
+  .split h3{font-size:18px; margin-bottom:10px;}
+  .split p{font-size:14.5px; color:var(--text-dim); margin:0;}
+
+  /* ---------- STEPS (ordered process — numbering is meaningful) ---------- */
+  .step-list{display:flex; flex-direction:column;}
+  .step{display:grid; grid-template-columns:52px 1fr; gap:18px; padding:22px 0; border-bottom:1px solid var(--border-soft);}
+  .step:last-child{border-bottom:none;}
+  .step .num{
+    font-family:var(--font-mono); font-size:14px; color:var(--cyan);
+    width:38px; height:38px; border:1px solid var(--border); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .step h4{font-size:16px; margin:0 0 6px; font-family:var(--font-body); font-weight:600;}
+  .step p{margin:0; font-size:14.5px; color:var(--text-dim);}
+  .step .callout{
+    margin-top:10px; font-family:var(--font-mono); font-size:13px; color:var(--amber);
+    background:rgba(242,169,59,0.08); border:1px solid rgba(242,169,59,0.25); border-radius:6px;
+    padding:8px 12px; display:inline-block;
+  }
+
+  /* ---------- TIERS ---------- */
+  .tier-list{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .tier{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:22px; position:relative;}
+  .tier .tier-label{font-family:var(--font-mono); font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;}
+  .tier h4{font-size:16px; margin-bottom:10px;}
+  .tier p{font-size:14px; color:var(--text-dim); margin:0;}
+  .tier-arrow{display:none;}
+  @media(min-width:801px){
+    .tier:not(:last-child)::after{
+      content:"→"; position:absolute; right:-19px; top:50%; transform:translateY(-50%);
+      color:var(--text-faint); font-size:16px; z-index:2;
+    }
+  }
+
+  /* ---------- MOTIVATION CARDS ---------- */
+  .m-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .mcard{border:1px solid var(--border); border-radius:var(--radius); padding:22px; background:var(--panel);}
+  .mcard .who{font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.8px; text-transform:uppercase; color:var(--blue); margin-bottom:10px;}
+  .mcard p{font-size:14.5px; color:var(--text-dim); margin:0;}
+
+  /* ---------- PHOTO SLOT ---------- */
+  .photo-slot{
+    aspect-ratio:16/9; border-radius:var(--radius); border:1px dashed var(--border);
+    background:linear-gradient(135deg, var(--panel) 0%, var(--panel-2) 100%);
+    display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;
+  }
+  .photo-slot img{width:100%; height:100%; object-fit:cover;}
+  .photo-slot .ph-msg{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--text-faint); text-align:center; padding:0 24px;
+  }
+
+  /* ---------- CONCLUSION ---------- */
+  .conclusion{
+    background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:40px clamp(20px,5vw,48px);
+  }
+  .conclusion p{font-size:clamp(17px,2vw,20px); font-family:var(--font-display); font-weight:500; line-height:1.5; color:var(--text); max-width:70ch;}
+  .conclusion .accent{color:var(--cyan);}
+
+  footer{padding:40px 0 60px;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  footer .fnote{font-family:var(--font-mono); font-size:12px; color:var(--text-faint);}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+    .flow-bar .seg{transition:none;}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; gap:36px;}
+    .stat-grid, .card-grid, .tier-list, .m-grid{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr;}
+    .split > div:first-child{border-right:none; border-bottom:1px solid var(--border);}
+    section{padding:64px 0;}
+    tbody th{width:130px;}
+  }
+  @media (max-width:520px){
+    .flow-legend{grid-template-columns:1fr;}
+    .nav-inner{padding:12px 16px;}
+    .wrap{padding:0 16px;}
+  }
+</style>
+</head>
+<body>
+
+    <header class="nav">
+        <div class="nav-inner">
+            <div class="logo"><span class="dot"></span>ФОРСАЙТ</div>
+            <nav class="links">
+                <a href="#problem">Барьеры</a>
+                <a href="#product">Продукт</a>
+                <a href="#market">Рынок</a>
+                <a href="#team">Команда</a>
+                <a href="#method">Модель</a>
+                <a href="#support">Поддержка</a>
+                <a href="#motivation">Мотивация</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <div class="eyebrow"><span class="bar"></span>Sorokin Daniil   DUAL-TRACK MODEL</div>
+                <h1>Рост без филиалов: <span>гибридная модель</span> для рынка энергоэффективности</h1>
+                <p class="sub">Текущая модель «Форсайта» упирается в классические барьеры B2B-масштабирования: дорогое предпроектное обследование, долгий цикл продаж, нехватка штатных аналитиков и инженерный саботаж на местах. При ставке 28% открывать региональные филиалы невыгодно — поэтому рост строится иначе.</p>
+                <div class="hero-stats">
+                    <div class="hstat"><div class="num">Неограничено</div><div class="label">прибль с региональных партнеров</div></div>
+                    <div class="hstat"><div class="num">0 ₽</div><div class="label">капзатрат на Региональных Партнеров</div></div>
+                    <div class="hstat"><div class="num">20%</div><div class="label">роялти с экономии</div></div>
+                </div>
+            </div>
+
+            <div class="readout reveal">
+                <div class="readout-head">
+                    <span class="rlabel">Пример объекта · АЗС</span>
+                    <span class="rlabel" style="color:#fff">Счёт за энергию ранее: 100 000 ₽/мес</span>
+                </div>
+                <div class="readout-total" id="totalNum">0 ₽<small> / мес —  экономия</small></div>
+                <div style="height:16px"></div>
+                <div class="flow-bar">
+                    <div class="seg seg-owner" style="width:0%" data-target="65"></div>
+                    <div class="seg seg-agent" style="width:0%" data-target="15"></div>
+                    <div class="seg seg-forsyth" style="width:0%" data-target="20"></div>
+                </div>
+                <div class="flow-legend">
+                    <div class="fl-item" style="border-color:var(--blue)">
+                        <div class="fname"><span class="sw" style="background:var(--blue)"></span>Владелец АЗС</div>
+                        <div class="fnum" data-count="26000">0 ₽</div>
+                        <div class="fpct">чистая выгода</div>
+                    </div>
+                    <div class="fl-item" style="border-color:var(--cyan)">
+                        <div class="fname"><span class="sw" style="background:var(--cyan)"></span>Агент</div>
+                        <div class="fnum" data-count="6000">0 ₽</div>
+                        <div class="fpct">пассивный доход</div>
+                    </div>
+                    <div class="fl-item" style="border-color:var(--amber)">
+                        <div class="fname"><span class="sw" style="background:var(--amber)"></span>«Форсайт»</div>
+                        <div class="fnum" data-count="8000">0 ₽</div>
+                        <div class="fpct">роялти, 20%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problem">
+        <div class="wrap">
+            <div class="eyebrow reveal"><span class="bar"></span>Проблема</div>
+            <h2 class="section-title reveal">Почему филиалы — не вариант</h2>
+            <p class="lede reveal">Наукоёмкий B2B-продукт масштабируется медленно: каждое обследование стоит дорого, сделки закрываются месяцами, а штатных инженеров для калибровки моделей зданий физически не хватает.</p>
+            <div class="stat-grid">
+                <div class="stat-card reveal">
+                    <div class="fig">Высокий порог входа</div>
+                    <div class="desc">Стоимость предпроектного обследования отсекает часть клиентов ещё на старте воронки.</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="fig">Длинный цикл продаж</div>
+                    <div class="desc">Дефицит штатных аналитиков не позволяет вручную калибровать физические модели зданий в нужном темпе.</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="fig">Саботаж на местах</div>
+                    <div class="desc">Инженеры на объектах сопротивляются внедрению — а московская команда физически не может присутствовать в каждом регионе.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="product">
+        <div class="wrap">
+            <div class="eyebrow reveal"><span class="bar"></span>Что продаём</div>
+            <h2 class="section-title reveal">Продукт</h2>
+            <p class="lede reveal">Компания уходит от продажи «тяжёлой ИТ-услуги сопровождения» к трём понятным и разделяемым продуктам — это снижает когнитивную нагрузку на покупателя и упрощает расчёт затрат для партнёра.</p>
+            <div class="card-grid">
+                <div class="pcard reveal">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 8l-9-5-9 5 9 5 9-5z" /><path d="M3 8v8l9 5 9-5V8" /><path d="M12 13v8" /></svg>
+                    <h3>«ПО + Железо»</h3>
+                    <p>Решение для партнёров: лицензия на ИИ-Робота плюс физический стек — датчики температуры и CO2, контроллеры, шлюзы данных. Продукт из категории «непонятный софт» становится осязаемым активом.</p>
+                </div>
+                <div class="pcard reveal">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 10L12 5 2 10l10 5 10-5z" /><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" /></svg>
+                    <h3>Курс «Форсайт»</h3>
+                    <p>Онлайн-программа наставничества и сертификации: методология АСУТП-расчётов, работа с интерфейсом Робота, основы математического моделирования базового потребления здания.</p>
+                </div>
+                <div class="pcard reveal">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17.5 19H6.5a4.5 4.5 0 01-.5-8.97A6 6 0 0118 9c0 .34-.03.67-.08 1H18a3.5 3.5 0 010 7z" /></svg>
+                    <h3>Облачный сервис ИИ</h3>
+                    <p>SaaS-ядро «Форсайта»: круглосуточно управляет уставками климата на основе погодных метеоданных (METAR) и внутренних факторов здания.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="market">
+        <div class="wrap">
+            <div class="eyebrow reveal"><span class="bar"></span>Кому продаём</div>
+            <h2 class="section-title reveal">Сегментация рынка</h2>
+            <p class="lede reveal">Чтобы избежать конфликта каналов между штатным отделом продаж и региональными партнёрами, клиенты жёстко разделены между двумя каналами.</p>
+
+            <div class="table-wrap reveal">
+                <table>
+                    <thead>
+                        <tr><th>Критерий</th><th>Enterprise-сегмент (прямой канал Форсайт)</th><th>Массовый рынок (партнёрский канал)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Тип объектов</th>
+                            <td>Аэропорты, заводы, федеральные ведомства</td>
+                            <td>Региональные ТЦ, АЗС, отели, склады</td>
+                        </tr>
+                        <tr>
+                            <th>Специфика интеграции</th>
+                            <td>Кастомная, сложная архитектура BMS</td>
+                            <td>Типовые, копируемые шаблоны систем</td>
+                        </tr>
+                        <tr>
+                            <th>Методика верификации</th>
+                            <td>Индивидуальная множественная регрессия по ГОСТ</td>
+                            <td>Стандартизированные автоматические дашборды</td>
+                        </tr>
+                        <tr>
+                            <th>Кто ведёт сделку</th>
+                            <td>Штат топ-менеджеров «Форсайта»</td>
+                            <td>Сертифицированный агент</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="note reveal">Прямые продажи крупным игрокам дают статус, сильные кейсы и крупные транши. Агентская сеть закрывает «длинный хвост» региональной недвижимости — рынок, который штатная команда физически не может обработать.</p>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="wrap">
+            <div class="eyebrow reveal"><span class="bar"></span>Кто продаёт</div>
+            <h2 class="section-title reveal">Архитектура коммерческого блока</h2>
+            <p class="lede reveal">Коммерческий блок становится двухдвигательным — внутренняя команда и внешняя распределённая сеть работают параллельно, не пересекаясь по клиентам.</p>
+
+            <div class="split reveal">
+                <div>
+                    <div class="tag">Внутренний контур</div>
+                    <h3>Департамент развития бизнеса</h3>
+                    <p>Высококлассные специалисты, занимающиеся исключительно стратегическим сектором, тендерами и GR — взаимодействием с госорганами.</p>
+                </div>
+                <div>
+                    <div class="tag">Внешний контур</div>
+                    <h3>Свободные агенты</h3>
+                    <p>Независимые инженеры-автоматизаторы, проектировщики HVAC, локальные интеграторы. Работают как ИП или региональные представители.</p>
+                </div>
+            </div>
+
+            <div class="photo-slot reveal" style="margin-top:20px">
+                <img src="images/photo-team.jpg" alt="Команда регионального агента на объекте" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="ph-msg" style="display:none">📷 Место для фото&#10;Замените на реальное фото команды или объекта:<br><code>images/photo-team.jpg</code></div>
+            </div>
+
+            <p class="note reveal" style="margin-top:24px">Местный инженер знает региональный рынок, имеет личный доступ к владельцам объектов и говорит на одном языке с персоналом эксплуатации — это снимает риск инженерного саботажа.</p>
+        </div>
+    </section>
+
+    <section id="method">
+        <div class="wrap">
+            <div class="eyebrow reveal"><span class="bar"></span>Как продаём</div>
+            <h2 class="section-title reveal">Методология и финансовая модель</h2>
+            <p class="lede reveal">Ключевая инновация — устранение финансового трения в сделке через механику Shared Savings: разделение сэкономленного с региональным посредником. Разбираем на примере кейса с АЗС.</p>
+
+            <div class="step-list reveal">
+                <div class="step">
+                    <div class="num">1</div>
+                    <div>
+                        <h4>Поиск и аудит</h4>
+                        <p>Агент находит локальную АЗС с ежемесячным счётом за электроэнергию 100 000 ₽.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="num">2</div>
+                    <div>
+                        <h4>Предложение ценности</h4>
+                        <p>По шаблону Курса агент рассчитывает эффект и предлагает владельцу снижение трат на 40% — то есть 40 000 ₽/мес — за счет оборудования и софта.</p>
+                        <span class="callout">−40% к счёту за электроэнергию</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="num">3</div>
+                    <div>
+                        <h4>Сделка и роялти</h4>
+                        <p>После согласия агент выкупает у «Форсайта» лицензию и датчики. Система монтируется и запускается.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="num">4</div>
+                    <div>
+                        <h4>Распределение экономии</h4>
+                        <p>Из 40 000 ₽ экономии агент забирает 30% (14 000 ₽), владелец АЗС — 26 000 ₽ чистой выгоды, а 20% (8 000 ₽) агент ежемесячно перечисляет «Форсайту» в качестве фиксированного роялти.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="note reveal" style="margin-top:8px">Для «Форсайта» это транзакционная модель: прибыль от продажи оборудования фиксируется сразу, а роялти даёт долгосрочный высокомаржинальный доход без затрат на привлечение и управление конкретным объектом.</p>
+        </div>
+    </section>
+
+    <section id="support">
+        <div class="wrap">
+            <div class="eyebrow reveal"><span class="bar"></span>После внедрения</div>
+            <h2 class="section-title reveal">Трёхуровневая система поддержки</h2>
+            <p class="lede reveal">Разделение поддержки по уровням решает главную проблему кейса — нехватку штатных инженеров-моделистов для сопровождения объектов.</p>
+
+            <div class="tier-list">
+                <div class="tier reveal">
+                    <div class="tier-label">Tier 1 · Полевая поддержка</div>
+                    <h4>Региональный агент</h4>
+                    <p>Реагирует мгновенно на отказ датчика или жалобы персонала — он в том же городе, а его доход напрямую зависит от работы системы.</p>
+                </div>
+                <div class="tier reveal">
+                    <div class="tier-label">Tier 2 · Параметрическая поддержка</div>
+                    <h4>Комьюнити и база знаний</h4>
+                    <p>Агенты решают типовые проблемы калибровки в закрытом форуме, обмениваются опытом интеграции SCADA/BMS. Среда саморегулируется.</p>
+                </div>
+                <div class="tier reveal">
+                    <div class="tier-label">Tier 3 · Ядро системы</div>
+                    <h4>Аналитический центр «Форсайта»</h4>
+                    <p>Штатные специалисты контролируют стабильность облачной платформы, выпускают обновления ИИ-алгоритмов и отвечают за безопасность данных.</p>
+                </div>
+            </div>
+
+            <p class="note reveal" style="margin-top:28px">Расчёт экономии полностью автоматизирован и «вшит» в облачную платформу — агент не может скорректировать цифры вручную. При нарушении регламента или невыплате роялти «Форсайт» удалённо отключает управление ИИ-Роботом.</p>
+        </div>
+    </section>
+
+    <section id="motivation">
+        <div class="wrap">
+            <div class="eyebrow reveal"><span class="bar"></span>Мотивация</div>
+            <h2 class="section-title reveal">Выигрыш для каждого участника</h2>
+            <p class="lede reveal">Успех гибридной модели строится на взаимной экономической выгоде всей цепочки создания ценности.</p>
+            <div class="m-grid">
+                <div class="mcard reveal">
+                    <div class="who">Региональные агенты</div>
+                    <p>Собственный микробизнес с неограниченным масштабированием. 10–15 типовых объектов дают доход, сопоставимый с зарплатой топ-менеджера, при полной независимости.</p>
+                </div>
+                <div class="mcard reveal">
+                    <div class="who">Отдел продаж «Форсайта»</div>
+                    <p>Фокус только на крупных премиальных сделках Enterprise со сверхвысокими бонусами за объём — без рутинной обработки мелких региональных заявок.</p>
+                </div>
+                <div class="mcard reveal">
+                    <div class="who">Инженеры и аналитики</div>
+                    <p>Меньше операционного «тушения пожаров» и командировок за старыми регистрами — больше времени на R&D и развитие ядра ИИ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="conclusion" style="padding-top:0">
+        <div class="wrap">
+            <div class="conclusion reveal">
+                <p>Гибридная модель диверсифицирует риски, снимает нагрузку по поиску кадров для регионального сервиса и формирует <span class="accent">предсказуемый высокомаржинальный поток дохода</span> от лицензий, оборудования и ежемесячных 20% роялти — с шансом стать индустриальным стандартом рынка энергоэффективности.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="fnote">Sorokin Daniil · Dual-Track Model</div>
+            <div class="fnote">Внутренний документ — стратегия развития</div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal on scroll (with hard fallback so content is never stuck invisible)
+        const els = document.querySelectorAll('.reveal');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function revealAll(){ els.forEach(el => el.classList.add('in')); }
+
+        if(reduceMotion){
+        revealAll();
+        } else {
+        try{
+        if('IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+        if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+        }
+        });
+        }, {threshold:0.12});
+        els.forEach(el=>io.observe(el));
+        } else {
+        revealAll();
+        }
+        } catch(e){
+        revealAll();
+        }
+        // Safety net: guarantee visibility even if the observer never fires,
+        // and don't depend on window 'load' (a blocked external resource like a
+        // font can delay or prevent that event).
+        document.addEventListener('DOMContentLoaded', ()=> setTimeout(revealAll, 1200));
+        setTimeout(revealAll, 2500);
+        }
+
+        // Animate hero savings readout once visible
+        const readout = document.querySelector('.readout');
+        let animated = false;
+        function animateReadout(){
+        if(animated) return;
+        animated = true;
+        const total = 40000;
+        const totalEl = document.getElementById('totalNum');
+        const counters = document.querySelectorAll('.fnum');
+        const segs = document.querySelectorAll('.flow-bar .seg');
+
+        if(reduceMotion){
+        totalEl.innerHTML = total.toLocaleString('ru-RU') + ' ₽<small> / мес — экономия</small>';
+        counters.forEach(c => c.textContent = Number(c.dataset.count).toLocaleString('ru-RU') + ' ₽');
+        segs.forEach(s => s.style.width = s.dataset.target + '%');
+        return;
+        }
+
+        let start = null;
+        const duration = 1100;
+        function step(ts){
+        if(!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        totalEl.innerHTML = Math.round(total * eased).toLocaleString('ru-RU') + ' ₽<small> / мес — экономия</small>';
+        counters.forEach(c=>{
+        const target = Number(c.dataset.count);
+        c.textContent = Math.round(target * eased).toLocaleString('ru-RU') + ' ₽';
+        });
+        if(progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        segs.forEach(s => s.style.width = s.dataset.target + '%');
+        }
+
+        try{
+        if('IntersectionObserver' in window && !reduceMotion){
+        const ro = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting) animateReadout(); });
+        }, {threshold:0.4});
+        ro.observe(readout);
+        } else {
+        animateReadout();
+        }
+        } catch(e){
+        animateReadout();
+        }
+        document.addEventListener('DOMContentLoaded', ()=> setTimeout(animateReadout, 1200));
+        setTimeout(animateReadout, 2500);
+    </script>
+</body>
+</html>
